@@ -5,12 +5,12 @@ help() {
 
     Weeping Moon
 
-    usage: wpm [options] [quickopts]
+    usage: wpm [opts] or [qopts]
 
-    [options] - weeping moon options. Mostly to help the user on weeping moon
+    [opts] - weeping moon options. Mostly to help the user on weeping moon
     script usage.
 
-    [quickopts] - Quick options for weeping moon that execute a small bundle of
+    [qopts] - Quick options for weeping moon that execute a small bundle of
     functions. Ideal if you want something that "just works" without having to
     prompt anything.
 
