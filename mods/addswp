@@ -12,8 +12,72 @@ help() {
 __EOF__
 }
 
-main() {
+# If free detects a swap partition then we are all done!
+ch_swp() {
+    if free | awk '/^Swap:/ {exit !$2}'; then
+        return 1
+    else
+        return 0
+    fi
+}
 
+main() {
+    echo -e "Checking if your installation has a swapfile already."
+
+    result=$(ch_swp)
+
+    if [[ $result = 1 ]]; then
+        echo -e "[SUCCESS] Your Ubuntu install is now using SWAP!"
+        exit 0
+    elif [[ $result = 2 ]]; then
+        echo -e "SWAP file not detected. Configuring one..."
+        read -pr "Please input your desired SWAP size in GB (Eg: 2GB) [Default: 4G]" swp_size
+
+        # Check for empty user input
+        if [[ -z $swp_size ]]; then
+            echo -e "Command doesn't accept empty inputs. Exiting"
+            exit 1
+        fi
+
+        # Read desired SWAP size for user
+        echo -e "Allocating your desired SWAP size"
+        sudo fallocate -l "$swp_size" /swapfile
+        clear
+
+        # Secure current swap
+        echo -e "[WARN] Securing SWAP, please avoid tampering with it"
+        sudo chown root:root /swapfile
+        sudo chmod 0600 /swapfile
+        echo -e "[SUCCESS] Secured SWAP correctly"
+
+        # Create a Linux Swap Area
+        echo -e "[WARN] Creating SWAP partition area, please wait"
+        sudo mkswap /swapfile
+        echo -e "[SUCCESS] Created SWAP partition area correctly"
+
+        # Activate swapfile
+        echo -e "[WARN] Activating swapfile"
+        sudo swapon /swapfile
+        echo -e "[SUCCESS] swapfile activated correctly"
+        clear
+
+        # Confirm that swap does exist
+        echo -e "Checking if SWAP creation was performed correctly"
+        new_result=$(ch_swp)
+
+        if [[ $new_result = 1 ]]; then
+            echo -e "[SUCCESS] Your Ubuntu install is now using SWAP!"
+            echo -e "Configuring swappiness..."
+            echo 0 | sudo tee /proc/sys/vm/swappiness
+            echo vm.swappiness = 0 | sudo tee -a /etc/sysctl.conf
+            exit 0
+        elif [[ $new_result = 2 ]]; then
+            echo -e "[FAILURE] addswp module failed to run. Exiting"
+            exit 2
+        fi
+    else
+        echo -e "SWAP file does not exist in the matrix. Exiting."
+    fi
 }
 
 case $1 in
