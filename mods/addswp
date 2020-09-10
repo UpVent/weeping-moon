@@ -1,5 +1,24 @@
 #! /usr/bin/env bash
 
+help() {
+    cat <<__EOF__
+    Module description:
 
+    Ubuntu servers running on common VPS instances
+    or hardware installs may not have SWAP configured.
 
-# 2020 - VentGrey
+    SWAP memory is important for servers to allow your
+    server to harness more memory than phisically available.
+__EOF__
+}
+
+main() {
+
+}
+
+case $1 in
+    help) help;;
+    *) main;;
+esac
+
+# 2020 - UpVent
