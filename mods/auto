@@ -1,5 +1,29 @@
 #! /usr/bin/env bash
 
+help() {
+    cat <<__EOF__
+    Module description:
 
+    This just helps to install and configure automatic
+    updates for the server
+
+    [DISCLAIMER] "BEAST-LIKE" UPDATING YOUR SERVERS WITHOUT READING THE UPDATE
+    CHANGES THEMSELVES MIGHT CAUSE BREAKAGE OR INTRODUCE NEW BUGS TO YOUR
+    SYSTEM. USE THIS MODULE AT YOUR OWN JUDGEMENT AND RESPONSIBILITY.
+__EOF__
+}
+
+main() {
+    echo -e "[WARN] Configuring automatic updates"
+    sudo apt install unattended-upgrades
+    sudo dpkg-reconfigure -plow unattended-upgrades
+    echo -e "[SUCCESS] Automatic updates configured correctly"
+    exit 0
+}
+
+case $1 in
+    help) help;;
+    *) main;;
+esac
 
 # 2020 - VentGrey
