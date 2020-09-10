@@ -26,4 +26,4 @@ case $1 in
     *) main;;
 esac
 
-# 2020 - VentGrey
+# 2020 - UpVent
