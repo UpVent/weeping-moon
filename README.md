@@ -29,7 +29,7 @@ security problems on Ubuntu Servers.
 - [X] ch-hname:     Change server hostname.
 - [X] bomb-shield:  Sets proccess limit for users (protects against fork-bombs)
 - [ ] spoof-shield: Prevents IP Spoofing.
-- [ ] ddos-shield:  Protects against DDoS attacks.
+- [X] ddos-shield:  Protects against DDoS attacks. [APACHE ONLY] (Will work on NGINX soon)
 - [ ] harden-php:   Hardens `php.ini` file.
 - [ ] harden-ssh:   Hardens `sshd_config` file.
 - [ ] ipt-rules:    Various iptables rules that MIGHT be handy.

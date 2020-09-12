@@ -4,11 +4,52 @@ help() {
     cat <<__EOF__
     Module description:
 
+    DDoS is a form of censorship attack that continously sends packets
+    to the victim server rendering it potentially unusable and vulnerable
+    to other security holes. DDoS is a distributed form of a DoS attack, so
+    you should assume that multiple machines are attacking at the same time.
+
+    This module aims to mitigate (or at least it tries to) any DDoS attack
+    that may fall on your server. Please bear in mind that a puny bash script
+    won't make yout 1GB RAM / 1vProc machine invincible, the best defense
+    agains DDoS attacks is a beffy and well configured infrastucture.
+
 __EOF__
 }
 
 main() {
 
+    # Detect if the user is using apache or nginx
+    # TODO: Configure NGINX
+
+    if [[ $(command -v apache2) ]]; then
+        echo -e "[WARN] Apache detected installing mod_evasive"
+        sudo apt install libapache2-mod-evasive
+        clear
+        echo -e "[SUCCESS] Installed mod_evasive correctly"
+        read -pr "Please input your email" email
+        echo -e "[WARN] Writing mod_evasive configurations"
+        echo "
+        <IfModule mod_evasive20.c>
+            DOSHashTableSize 3097
+            DOSPageCount 2
+            DOSSiteCount 50
+            DOSPageInterval 1
+            DOSSiteInterval 1
+            DOSBlockingPeriod 10
+            DOSEmailNotify $email
+            DOSSystemCommand \"su - apache -c '/sbin/... %s ...'\"
+            DOSLogDir \"/var/log/mod_evasive\"
+     </IfModule>"
+        clear
+        echo -e "[SUCCESS] mod_evasive file written correctly"
+        echo -e "[WARN] Creating log directory and restarting apache"
+        sudo mkdir /var/log/mod_evasive
+        sudo chown -R www-data:www-data /var/log/mod_evasive
+        sudo apache2ctl graceful
+    else
+        echo -e "Only apache is supported for the moment"
+    fi
 }
 
 case $1 in
