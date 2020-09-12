@@ -4,11 +4,22 @@ help() {
     cat <<__EOF__
     Module description:
 
+    Usually the root account is disabled on servers unless you are a
+    pretty good sysadmin or at least confident enough that your server
+    is not going to get blown up soon. Disabling the root account should
+    be a nice security touch to the server. NEVER DELETE IT.
 __EOF__
 }
 
 main() {
+    echo -e "[WARN] Disabling root account."
+    sudo passwd -l root
+    echo -e "[SUCCESS] Root account disabled successfully"
+    echo -e "
 
+    If you need to re-enable your root account please use the following command:
+
+    sudo passwd -u root"
 }
 
 case $1 in

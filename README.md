@@ -19,7 +19,7 @@ solution for common security problems on Ubuntu Servers.
 - [ ] upd:          Updtates the system.
 - [X] auto:         Enables automatic updates.
 - [X] auto-sec:     Enables automatic security updates only.
-- [ ] dis-root:     Disables `root` account.
+- [X] dis-root:     Disables `root` account.
 - [X] addswp:       Adds swap to the server.
 - [ ] sysconf:      Various `sysctl.conf` tweaks
 - [X] dis-irq:      Disables IRQ Balance.
