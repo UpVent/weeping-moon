@@ -34,3 +34,11 @@ security problems on Ubuntu Servers.
 * harden-ssh:   Hardens `sshd_config` file.
 * ipt-rules:    Various iptables rules that MIGHT be handy.
 * shellshock:   Check if your current bash version is compromised against shellshock.
+
+## TODO: 
+
+- [] Finish programming all modules
+- [] Add colored output
+- [] Handle exit codes more gracefully
+- [] Make a .deb package or an install.sh script
+- [] Test on Debian
