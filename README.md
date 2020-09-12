@@ -16,7 +16,7 @@ solution for common security problems on Ubuntu Servers.
 
 ## Available Modules
 
-- [ ] upd:          Updtates the system.
+- [ ] upd:          Updates the system.
 - [X] auto:         Enables automatic updates.
 - [X] auto-sec:     Enables automatic security updates only.
 - [X] dis-root:     Disables `root` account.
