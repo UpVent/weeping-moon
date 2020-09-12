@@ -26,7 +26,7 @@ security problems on Ubuntu Servers.
 - [ ] heartbleed:   Checks for heartbleed CVE in OpenSSL.
 - [ ] sec-tmp:      Secures `/tmp` and `/var/tmp`.
 - [ ] sec-shared:   Secures shared memory.
-- [ ] ch-hname:     Change server hostname.
+- [X] ch-hname:     Change server hostname.
 - [X] bomb-shield:  Sets proccess limit for users (protects against fork-bombs)
 - [ ] spoof-shield: Prevents IP Spoofing.
 - [ ] ddos-shield:  Protects against DDoS attacks.

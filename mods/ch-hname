@@ -4,10 +4,15 @@ help() {
     cat <<__EOF__
     Module description:
 
+    This will change only the hostname of the current installation
+    it serves as a "unique" identifier on your network, though it might
+    come in handy if you're trying to setup a mailserver or similar services.
 __EOF__
 }
 
 main() {
+    read -pr "Input the desired hostname for this computer" hname
+    echo "$hname" | sudo tee /etc/hostname
 
 }
 
