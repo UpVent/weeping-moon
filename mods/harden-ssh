@@ -1,5 +1,19 @@
 #! /usr/bin/env bash
 
+help() {
+    cat <<__EOF__
+    Module description:
 
+__EOF__
+}
 
-# 2020 - VentGrey
+main() {
+
+}
+
+case $1 in
+    help) help;;
+    *) main;;
+esac
+
+# 2020 - UpVent
