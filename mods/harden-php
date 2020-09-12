@@ -4,11 +4,32 @@ help() {
     cat <<__EOF__
     Module description:
 
+    As a small sysadmin rule you should NEVER EVER leave the default
+    configurations for things connected to the internet or even inside
+    the server.
+
+    PHP default options might be insecure so this module will rewrite the
+    file to give your server a little extra protection
 __EOF__
 }
 
 main() {
-
+    echo -e "[WARN] rewriting /etc/php/fpm/php.ini"
+    # TODO: Replace all of these darn seds
+    sudo sed 's/^safe_mode = .$/safe_mode = On'
+    sudo sed 's/^safe_mode_gid = *$/safe_mode_gid = On'
+    sudo sed 's/^sql.safe_mode = *$/sql.safe_mode = On'
+    sudo sed 's/^register_globals = *$/register_globals = Off'
+    sudo sed 's/^magic_quotes_gpc = *$/magic_quotes_gpc = Off'
+    sudo sed 's/^expose_php = *$/expose_php = Off'
+    sudo sed 's/^track_errors = *$/track_errors = Off'
+    sudo sed 's/^html_errors = *$/html_errors = Off'
+    sudo sed 's/^display_errors = *$/display_errors = Off'
+    sudo sed 's/^disable_functions = *$/disable_functions = system,exec,shell_exec,php_uname,getmyuid,getmypid,leak,listen,diskfreespace,link,ignore_user_abord,dl,set_time_limit,highlight_file,source,show_source,passthru,fpaththru,virtual,posix_ctermid,posix_getcwd,posix_getegid,posix_geteuid,posix_getgid,posix_getgrgid,posix_getgrnam,posix_getgroups,posix_getlogin,posix_getpgid,posix_getpgrp,posix_getpid,posix,_getppid,posix_getpwnam,posix_getpwuid,posix_getrlimit,posix_getsid,posix_getuid,posix_isatty,posix_kill,posix_mkfifo,posix_setegid,posix_seteuid,posix_setgid,posix_setpgid,posix_setsid,posix_setuid,posix_times,posix_ttyname,posix_uname,proc_open,proc_close,proc_get_status,proc_nice,proc_terminate,phpinfo'
+    sudo sed 's/^allow_url_fopen = *$/allow_url_fopen = Off'
+    sudo sed 's/^allow_url_include = *$/allow_url_include = Off'
+    sudo sed 's/^session.cookie_httponly = *$/session.cookie_httponly = 1'
+    echo -e "[SUCCESS] php.ini file modified correctly"
 }
 
 case $1 in

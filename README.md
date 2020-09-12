@@ -30,7 +30,7 @@ solution for common security problems on Ubuntu Servers.
 - [X] bomb-shield:  Sets proccess limit for users (protects against fork-bombs)
 - [ ] spoof-shield: Prevents IP Spoofing.
 - [X] ddos-shield:  Protects against DDoS attacks. [APACHE ONLY] (Will work on NGINX soon)
-- [ ] harden-php:   Hardens `php.ini` file.
+- [X] harden-php:   Hardens `php.ini` file. [REQUIRES TESTING]
 - [ ] harden-ssh:   Hardens `sshd_config` file.
 - [ ] ipt-rules:    Various iptables rules that MIGHT be handy.
 - [ ] shellshock:   Check if your current bash version is compromised against shellshock.
