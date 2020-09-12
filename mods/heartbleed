@@ -4,11 +4,30 @@ help() {
     cat <<__EOF__
     Module description:
 
+    Heartbleed is a CVE affecting OpenSSL which allows kiddies to leak memory
+    repeatedly until crutial information is shown up. This includes private
+    keys, passwords, cookies and even user passwords. This script will just tell
+    if your system is vulnerable or not to Heartbleed, if it is it will attempt
+    to compile a newer OpenSSL version for you.
 __EOF__
 }
 
 main() {
+    openssl_minversion=1.0.1
 
+    if echo -e "$(openssl version|awk '{print $2}')\n${openssl_minversion}" | sort -V | head -1 | grep -q ^${openssl_minversion}$;then
+        echo -e "[SUCCESS] Your OpenSSL version is safe to use!"
+    else
+        echo -e "[WARN] Your OpenSSL version is vulnerable to heartbleed!"
+        echo -e "Installing build dependencies"
+        sudo apt install make
+        clear
+        echo -e "Downloading latest OpenSSL"
+        curl https://www.openssl.org/source/openssl-1.1.1g.tar.gz | tar xz && cd openssl-1.1.1g && sudo ./config && sudo make && sudo make install
+        sudo ln -sf /usr/local/ssl/bin/openssl "$(command -v openssl)"
+        clear
+        echo -e "[SUCCESS] OpenSSL built successfully"
+    fi
 }
 
 case $1 in

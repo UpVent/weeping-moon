@@ -23,7 +23,7 @@ solution for common security problems on Ubuntu Servers.
 - [X] addswp:       Adds swap to the server.
 - [ ] sysconf:      Various `sysctl.conf` tweaks
 - [X] dis-irq:      Disables IRQ Balance.
-- [ ] heartbleed:   Checks for heartbleed CVE in OpenSSL.
+- [X] heartbleed:   Checks for heartbleed CVE in OpenSSL.
 - [ ] sec-tmp:      Secures `/tmp` and `/var/tmp`.
 - [ ] sec-shared:   Secures shared memory.
 - [X] ch-hname:     Change server hostname.
