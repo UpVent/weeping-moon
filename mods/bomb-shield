@@ -4,11 +4,21 @@ help() {
     cat <<__EOF__
     Module description:
 
+    New server admins might be unaware of process limiting and might be
+    vulnerable to fork-bomb and other process-based attacks that might
+    consume a lot of their server's resources. This is potentially dangerous,
+    especially in VPS providers since high CPU usage might result in account
+    termination
 __EOF__
 }
 
 main() {
+    echo -e "[WARN] Proceeding to edit /etc/security/limits.conf"
+    read -pr "Please input the user you want to limit" user
+    read -pr "Please input the process limit you want for that user" pu_lim
 
+    echo -e "$user hard nproc $pu_lim" | sudo tee -a /etc/security/limits.conf
+    echo -e "[SUCCESS] Limited user's processes correctly!"
 }
 
 case $1 in

@@ -27,7 +27,7 @@ security problems on Ubuntu Servers.
 - [ ] sec-tmp:      Secures `/tmp` and `/var/tmp`.
 - [ ] sec-shared:   Secures shared memory.
 - [ ] ch-hname:     Change server hostname.
-- [ ] bomb-shield:  Sets proccess limit for users (protects against fork-bombs)
+- [X] bomb-shield:  Sets proccess limit for users (protects against fork-bombs)
 - [ ] spoof-shield: Prevents IP Spoofing.
 - [ ] ddos-shield:  Protects against DDoS attacks.
 - [ ] harden-php:   Hardens `php.ini` file.
