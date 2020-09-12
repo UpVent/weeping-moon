@@ -4,11 +4,17 @@ help() {
     cat <<__EOF__
     Module description:
 
+    IRQ balance is is a hardware interrupt distributor on multiproc
+    systems. Since we are working on a server we should turn off this
+    because we don't want hardware interruptions in out threads. This
+    should optimize performance a little.
 __EOF__
 }
 
 main() {
-
+    echo -e "[WARN] Disabling IRQ balance."
+    sudo sed 's/ENABLED="1"/ENABLED="0"'
+    echo -e "[SUCCESS] IRQ balance disabled correctly"
 }
 
 case $1 in

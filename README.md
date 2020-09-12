@@ -22,7 +22,7 @@ security problems on Ubuntu Servers.
 - [ ] dis-root:     Disables `root` account.
 - [X] addswp:       Adds swap to the server.
 - [ ] sysconf:      Various `sysctl.conf` tweaks
-- [ ] dis-irq:      Disables IRQ Balance.
+- [X] dis-irq:      Disables IRQ Balance.
 - [ ] heartbleed:   Checks for heartbleed CVE in OpenSSL.
 - [ ] sec-tmp:      Secures `/tmp` and `/var/tmp`.
 - [ ] sec-shared:   Secures shared memory.
