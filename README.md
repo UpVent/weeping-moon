@@ -6,9 +6,9 @@
 > Name based on "Under the Weeping Moon" a song of the Orchid album.
 
 Weeping Moon is an orchid-like bash script. Originally a sold module of Orchid
-named "Strange Brew" aimed to help new server admins to harden their ubuntu
-server installations. It aims to provide a quick and easy solution for common
-security problems on Ubuntu Servers.
+named "Strange Brew" aimed to help new server admins to harden their 
+Ubuntu / Debian server installations. It aims to provide a quick and easy 
+solution for common security problems on Ubuntu Servers.
 
 ## Prerequisites
 

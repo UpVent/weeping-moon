@@ -4,7 +4,7 @@ help() {
     cat <<__EOF__
     Module description:
 
-    Ubuntu servers running on common VPS instances
+    Ubuntu / Debian servers running on common VPS instances
     or hardware installs may not have SWAP configured.
 
     SWAP memory is important for servers to allow your
