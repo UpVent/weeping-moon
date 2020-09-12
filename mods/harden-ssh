@@ -4,11 +4,45 @@ help() {
     cat <<__EOF__
     Module description:
 
+    SSH is helpful when it comes to managing machines remotely
+    however it also becomes a great entry point for true hackers
+    and script kiddies to attack. This module will harden your
+    default ssh configuration.
+
 __EOF__
 }
 
 main() {
+    read -pr "Please input your desired SSH port" prt
+    echo -e "[WARN] writing to /etc/ssh/sshd_config"
+    sudo sed "s/^Port*$/Port $prt" /etc/ssh/sshd_config
+    sudo sed 's/^Protocol*$/Protocol 2' /etc/ssh/sshd_config
+    sudo sed 's/^LogLevel*$/LogLevel VERBOSE' /etc/ssh/sshd_config
+    sudo sed "s/^PermitRootLogin*$/PermitRootLogin no" /etc/ssh/sshd_config
+    sudo sed "s/^StrictModes*$/StrictModes yes" /etc/ssh/sshd_config
+    sudo sed "s/^RSAAuthentication*$/RSAAuthentication yes" /etc/ssh/sshd_config
+    sudo sed "s/^IgnoreRhosts*$/IgnoreRhosts yes" /etc/ssh/sshd_config
+    sudo sed "s/^RhostsRSAAuthentication*$/RhostsRSAAuthentication no" /etc/ssh/sshd_config
+    sudo sed "s/^PermitEmptyPassword*$/PermitEmptyPasswords no" /etc/ssh/sshd_config
+    sudo sed "s/^PasswordAuthentication*$/PasswordAuthentication no" /etc/ssh/sshd_config
+    sudo sed "s/^ClientAliveInterval*$/ClientAliveInterval 300" /etc/ssh/sshd_config
+    sudo sed "s/^ClientAliveCountMa*$/ClientAliveCountMax 0" /etc/ssh/sshd_config
+    sudo sed "s/^AllowTcpForwardin*$/AllowTcpForwarding no" /etc/ssh/sshd_config
+    sudo sed "s/^X11Forwarding*$/X11Forwarding no" /etc/ssh/sshd_config
+    sudo sed "s/^UseDNS*$/UseDNS no" /etc/ssh/sshd_config
+    echo -e "[SUCCESS] sshd_config file modified correctly"
 
+    clear
+
+    echo -e "[WARN] Writing in /etc/pam.d/sshd"
+    sudo sed "s/session	optional	pam_motd.so motd=/run/motd.dynamic noupdate/#session	optional	pam_motd.so motd=/run/motd.dynamic noupdate"
+    sudo sed "s/session	optional	pam_motd.so # [1]/#session	optional	pam_motd.so # [1]"
+    echo -e "[SUCCESS] /etc/pam.d/sshd written correctly"
+
+    echo -e "[WARN] Restarting ssh service"
+    sudo service ssh restart
+    clear
+    echo -e "[SUCCESS] ssh service hardened!"
 }
 
 case $1 in

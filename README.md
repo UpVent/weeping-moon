@@ -31,7 +31,7 @@ solution for common security problems on Ubuntu Servers.
 - [ ] spoof-shield: Prevents IP Spoofing.
 - [X] ddos-shield:  Protects against DDoS attacks. [APACHE ONLY] (Will work on NGINX soon)
 - [X] harden-php:   Hardens `php.ini` file. [REQUIRES TESTING]
-- [ ] harden-ssh:   Hardens `sshd_config` file.
+- [X] harden-ssh:   Hardens `sshd_config` file.
 - [ ] ipt-rules:    Various iptables rules that MIGHT be handy.
 - [ ] shellshock:   Check if your current bash version is compromised against shellshock.
 
