@@ -10,15 +10,18 @@ __EOF__
 }
 
 main() {
+    echo -e "Please input your email."
+    echo -e "Don't worry it will be written on the /etc/apt/apt.conf.d/50unattended-upgrades file"
+    read -r email
     echo -e "[WARN] Configuring security updates"
     # Write to the apt.conf.d file
-    sudo tee -a ": Unattended-Upgrade::Allowed-Origins {
-:     \"\${distro_id}:\${distro_codename}-security\";
-: //  \"\${distro_id}:\${distro_codename}-updates\";
-: //  \"\${distro_id}:\${distro_codename}-proposed\";
-: //  \"\${distro_id}:\${distro_codename}-backports\";
-: };
-: // Unattended-Upgrade::Mail \"my_user@my_domain.com\";" | /etc/apt/apt.conf.d/50unattended-upgrades
+    echo ": Unattended-Upgrade::Allowed-Origins {
+     \"\${distro_id}:\${distro_codename}-security\";
+ //  \"\${distro_id}:\${distro_codename}-updates\";
+ //  \"\${distro_id}:\${distro_codename}-proposed\";
+ //  \"\${distro_id}:\${distro_codename}-backports\";
+ };
+ // Unattended-Upgrade::Mail \"$email\";" | sudo tee -a /etc/apt/apt.conf.d/50unattended-upgrades
 
     sudo apt-get install unattended-upgrades
     sudo dpkg-reconfigure -plow unattended-upgrades
