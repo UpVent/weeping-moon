@@ -25,7 +25,7 @@ are indeed tested in both Debian and Ubuntu (Stable & Latest LTS respectively)
 
 ## Available Modules
 
-- [ ] upd:          Updates the system.
+- [X] upd:          Updates the system.
 - [X] auto:         Enables automatic updates.
 - [X] auto-sec:     Enables automatic security updates only.
 - [X] dis-root:     Disables `root` account.

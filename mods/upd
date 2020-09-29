@@ -8,7 +8,12 @@ __EOF__
 }
 
 main() {
-
+    echo -e "[WARN] Updating the system, please make sure an update is ABSOLUTELY neccesary"
+    sudo apt update
+    sudo apt upgrade
+    sudo apt autoremove
+    sudo apt autoclean
+    echo -e "[SUCCESS] System updated successfully"
 }
 
 case $1 in
