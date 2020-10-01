@@ -21,7 +21,7 @@ are indeed tested in both Debian and Ubuntu (Stable & Latest LTS respectively)
 
 ## Prerequisites
 
-- It sould *just* work :)
+- It sould *just* work.
 
 ## Available Modules
 
