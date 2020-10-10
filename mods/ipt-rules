@@ -47,7 +47,35 @@ main() {
 
     sudo iptables -A INPUT   -m recent --name portscan --remove
     sudo iptables -A FORWARD -m recent --name portscan --remove
+
+    # Add port scanners to the log files
+    sudo iptables -A INPUT   -p tcp -m tcp --dport 139 -m recent --name portscan --set -j LOG --log-prefix "Portscan:"
+    sudo iptables -A INPUT   -p tcp -m tcp --dport 139 -m recent --name portscan --set -j DROP
+
+    sudo iptables -A FORWARD -p tcp -m tcp --dport 139 -m recent --name portscan --set -j LOG --log-prefix "Portscan:"
+    sudo iptables -A FORWARD -p tcp -m tcp --dport 139 -m recent --name portscan --set -j DROP
     echo -e "[SUCCESS] Port scanners blocked successfully"
+
+    echo -e "[WARN] Forcing SYN packets check"
+    sudo iptables -A INPUT -p tcp ! --syn -m state --state NEW -j DROP
+    echo -e "[SUCCESS] All SYN packets forced to be checked"
+
+
+    echo -e "[WARN] Drop all NULL packets"
+    sudo iptables -A INPUT -p tcp --tcp-flags ALL NONE -j DROP
+    echo -e "[SUCCESS] All null packets will be dropped from now on"
+
+    read -pr "Do you wish to block ping?" ans
+
+    if [[ ans = "Y" || ans = "y" ]]; then
+        iptables -A OUTPUT -p icmp -o eth0 -j ACCEPT
+        iptables -A INPUT -p icmp --icmp-type echo-reply -s 0/0 -i eth0 -j ACCEPT
+        iptables -A INPUT -p icmp --icmp-type destination-unreachable -s 0/0 -i eth0 -j ACCEPT
+        iptables -A INPUT -p icmp --icmp-type time-exceeded -s 0/0 -i eth0 -j ACCEPT
+        iptables -A INPUT -p icmp -i eth0 -j DROP
+    elif [[ ans = "N" || ans = "n" ]]; then
+        echo -e "Ping will be accepted in this machine"
+    fi
 }
 
 case $1 in
