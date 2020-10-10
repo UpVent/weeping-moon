@@ -50,7 +50,7 @@ are indeed tested in both Debian and Ubuntu (Stable & Latest LTS respectively)
 - [ ] Add colored output
 - [ ] Handle exit codes more gracefully
 - [ ] Make a .deb package or an install.sh script
-- [ ] Test on Debian
+- [ ] Finish all testing on Debian / Ubuntu
 
 ## Tested modules (On Ubuntu)
 
