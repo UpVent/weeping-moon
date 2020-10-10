@@ -90,6 +90,6 @@ are indeed tested in both Debian and Ubuntu (Stable & Latest LTS respectively)
 - [ ] spoof-shield: Prevents IP Spoofing.
 - [ ] ddos-shield:  Protects against DDoS attacks. [APACHE ONLY] (Will work on NGINX soon)
 - [ ] harden-php:   Hardens `php.ini` file. [REQUIRES TESTING]
-- [X] harden-ssh:   Hardens `sshd_config` file.
-- [X] ipt-rules:    Various iptables rules that MIGHT be handy.
+- [ ] harden-ssh:   Hardens `sshd_config` file.
+- [ ] ipt-rules:    Various iptables rules that MIGHT be handy.
 - [ ] shellshock:   Check if your current bash version is compromised against shellshock.
