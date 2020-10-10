@@ -20,8 +20,34 @@ main() {
     sudo iptables -I INPUT -p tcp --dport ssh -i eth0 -m state --state NEW -m recent  --update --seconds 15 --hitcount 3 -j DROP
     echo -e "[SUCCESS] Iptables ssh connections limited correctly"
 
-    read -pr ""
+    echo -e "[WARN] Setting up port knocking rules"
 
+    sudo iptables -N stage1
+    sudo iptables -A stage1 -m recent --remove --name knock
+    sudo iptables -A stage1 -p tcp --dport 3456 -m recent --set --name knock2
+    sudo iptables
+    sudo iptables -N stage2
+    sudo iptables -A stage2 -m recent --remove --name knock2
+    sudo iptables -A stage2 -p tcp --dport 2345 -m recent --set --name heaven
+    sudo iptables
+    sudo iptables -N door
+    sudo iptables -A door -m recent --rcheck --seconds 5 --name knock2 -j stage2
+    sudo iptables -A door -m recent --rcheck --seconds 5 --name knock -j stage1
+    sudo iptables -A door -p tcp --dport 1234 -m recent --set --name knock
+    sudo iptables
+    sudo iptables -A INPUT -m --state ESTABLISHED,RELATED -j ACCEPT
+    sudo iptables -A INPUT -p tcp --dport 22 -m recent --rcheck --seconds 5 --name heaven -j ACCEPT
+    sudo iptables -A INPUT -p tcp --syn -j doo
+
+    echo -e "[SUCCESS] Port knocking rules setup successfully"
+
+    echo -e "[WARN] Blocking portscan attempts for one day"
+    sudo iptables -A INPUT   -m recent --name portscan --rcheck --seconds 86400 -j DROP
+    sudo iptables -A FORWARD -m recent --name portscan --rcheck --seconds 86400 -j DROP
+
+    sudo iptables -A INPUT   -m recent --name portscan --remove
+    sudo iptables -A FORWARD -m recent --name portscan --remove
+    echo -e "[SUCCESS] Port scanners blocked successfully"
 }
 
 case $1 in
