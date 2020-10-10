@@ -51,3 +51,45 @@ are indeed tested in both Debian and Ubuntu (Stable & Latest LTS respectively)
 - [ ] Handle exit codes more gracefully
 - [ ] Make a .deb package or an install.sh script
 - [ ] Test on Debian
+
+## Tested modules (On Ubuntu)
+
+- [ ] upd:          Updates the system.
+- [ ] auto:         Enables automatic updates.
+- [ ] auto-sec:     Enables automatic security updates only.
+- [ ] dis-root:     Disables `root` account.
+- [ ] addswp:       Adds swap to the server.
+- [ ] sysconf:      Various `sysctl.conf` tweaks
+- [ ] dis-irq:      Disables IRQ Balance.
+- [ ] heartbleed:   Checks for heartbleed CVE in OpenSSL.
+- [ ] sec-tmp:      Secures `/tmp` and `/var/tmp`.
+- [ ] sec-shared:   Secures shared memory.
+- [ ] ch-hname:     Change server hostname.
+- [ ] bomb-shield:  Sets proccess limit for users (protects against fork-bombs)
+- [ ] spoof-shield: Prevents IP Spoofing.
+- [ ] ddos-shield:  Protects against DDoS attacks. [APACHE ONLY] (Will work on NGINX soon)
+- [ ] harden-php:   Hardens `php.ini` file. [REQUIRES TESTING]
+- [ ] harden-ssh:   Hardens `sshd_config` file.
+- [ ] ipt-rules:    Various iptables rules that MIGHT be handy.
+- [ ] shellshock:   Check if your current bash version is compromised against shellshock.
+
+## Tested modules (On Debian)
+
+- [ ] upd:          Updates the system.
+- [ ] auto:         Enables automatic updates.
+- [ ] auto-sec:     Enables automatic security updates only.
+- [ ] dis-root:     Disables `root` account.
+- [ ] addswp:       Adds swap to the server.
+- [ ] sysconf:      Various `sysctl.conf` tweaks
+- [ ] dis-irq:      Disables IRQ Balance.
+- [ ] heartbleed:   Checks for heartbleed CVE in OpenSSL.
+- [ ] sec-tmp:      Secures `/tmp` and `/var/tmp`.
+- [ ] sec-shared:   Secures shared memory.
+- [ ] ch-hname:     Change server hostname.
+- [ ] bomb-shield:  Sets proccess limit for users (protects against fork-bombs)
+- [ ] spoof-shield: Prevents IP Spoofing.
+- [ ] ddos-shield:  Protects against DDoS attacks. [APACHE ONLY] (Will work on NGINX soon)
+- [ ] harden-php:   Hardens `php.ini` file. [REQUIRES TESTING]
+- [X] harden-ssh:   Hardens `sshd_config` file.
+- [X] ipt-rules:    Various iptables rules that MIGHT be handy.
+- [ ] shellshock:   Check if your current bash version is compromised against shellshock.
