@@ -4,11 +4,17 @@ help() {
     cat <<__EOF__
     Module description:
 
+    A shared memory attack might be mitigated
+    if this is executed. These memory attacks
+    are normally directed towards a running
+    service like apache2, httpd or nginx
 __EOF__
 }
 
 main() {
-
+    echo -e "[DANGER] Writing to FSTAB please check that everything is working properly before rebooting!"
+    echo "tmpfs	/run/shm	tmpfs	ro,noexec,nosuid	0 0" | sudo tee /etc/fstab
+    echo -e "[SUCCSESS] New fstab entry written correctly"
 }
 
 case $1 in

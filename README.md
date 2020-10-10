@@ -34,7 +34,7 @@ are indeed tested in both Debian and Ubuntu (Stable & Latest LTS respectively)
 - [X] dis-irq:      Disables IRQ Balance.
 - [X] heartbleed:   Checks for heartbleed CVE in OpenSSL.
 - [ ] sec-tmp:      Secures `/tmp` and `/var/tmp`.
-- [ ] sec-shared:   Secures shared memory.
+- [X] sec-shared:   Secures shared memory.
 - [X] ch-hname:     Change server hostname.
 - [X] bomb-shield:  Sets proccess limit for users (protects against fork-bombs)
 - [ ] spoof-shield: Prevents IP Spoofing.
