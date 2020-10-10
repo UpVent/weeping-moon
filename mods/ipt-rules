@@ -4,10 +4,23 @@ help() {
     cat <<__EOF__
     Module description:
 
+    iptables is a userspace utility that allows a sysadmin to configure the
+    linux kernel firewall tables and it's rules.
 __EOF__
 }
 
 main() {
+    read -pr "How many connection attempts should be allowed into SSH before a soft-ban?" ssh-att
+    echo -e "[WARN] Setting up iptables for ssh connection limits"
+    sudo iptables -I INPUT -p tcp --dport 22 -i eth0 -m state --state NEW -m recent --set
+    sudo iptables -I INPUT -p tcp --dport 22 -i eth0 -m state --state NEW -m recent --update --seconds 60 --hitcount "$(ssh-att)" -j DROP
+
+    # Drop any incoming connections making more than 3 attempts in 15 seconds or less
+    sudo iptables -I INPUT -p tcp --dport ssh -i eth0 -m state --state NEW -m recent  --set
+    sudo iptables -I INPUT -p tcp --dport ssh -i eth0 -m state --state NEW -m recent  --update --seconds 15 --hitcount 3 -j DROP
+    echo -e "[SUCCESS] Iptables ssh connections limited correctly"
+
+    read -pr ""
 
 }
 
