@@ -1,0 +1,15 @@
+Source: weeping-moon
+Section: unknown
+Priority: optional
+Maintainer: Omar Jair Purata Funes <omarpurataf@gmail.com>
+Build-Depends: debhelper-compat (= 12)
+Standards-Version: 4.4.1
+Homepage: <insert the upstream URL, if relevant>
+#Vcs-Browser: https://salsa.debian.org/debian/weeping-moon
+#Vcs-Git: https://salsa.debian.org/debian/weeping-moon.git
+
+Package: weeping-moon
+Architecture: all
+Depends: ${misc:Depends}
+Description: <insert up to 60 chars description>
+ <insert long description, indented with spaces>
