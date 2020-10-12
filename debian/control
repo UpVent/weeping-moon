@@ -1,15 +1,21 @@
 Source: weeping-moon
-Section: unknown
+Section: base
 Priority: optional
 Maintainer: Omar Jair Purata Funes <omarpurataf@gmail.com>
 Build-Depends: debhelper-compat (= 12)
 Standards-Version: 4.4.1
-Homepage: <insert the upstream URL, if relevant>
+Homepage: https://github.com/UpVent/weeping-moon
 #Vcs-Browser: https://salsa.debian.org/debian/weeping-moon
-#Vcs-Git: https://salsa.debian.org/debian/weeping-moon.git
+Vcs-Git: https://github.com/UpVent/weeping-moon
 
 Package: weeping-moon
 Architecture: all
 Depends: ${misc:Depends}
-Description: <insert up to 60 chars description>
- <insert long description, indented with spaces>
+Description: Small utility script to harden ubuntu servers
+ Weeping Moon is an orchid-like bash script.
+ .
+ Originally a sold module of Orchid named "Strange Brew" aimed to help new server admins to
+ harden their Ubuntu / Debian server installations.
+ .
+ It aims to provide a quick and easy
+ solution for common security problems on Ubuntu Servers.
