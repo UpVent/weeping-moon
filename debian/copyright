@@ -4,17 +4,6 @@ Upstream-Contact: <preferred name and address to reach the upstream project>
 Source: <url://example.com>
 
 Files: *
-Copyright: <years> <put author's name and email here>
-           <years> <likewise for another author>
-License: <special license>
- <Put the license of the package here indented by 1 space>
- <This follows the format of Description: lines in control file>
- .
- <Including paragraphs>
-
-# If you want to use GPL v2 or later for the /debian/* files use
-# the following clauses, or change it to suit. Delete these two lines
-Files: debian/*
 Copyright: 2020 Omar Jair Purata Funes <omarpurataf@gmail.com>
 License: GPL-2+
  This package is free software; you can redistribute it and/or modify
