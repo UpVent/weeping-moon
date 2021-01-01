@@ -8,7 +8,8 @@ __EOF__
 }
 
 main() {
-
+    echo "This module isn't ready yet!"
+    exit 127;
 }
 
 case $1 in
