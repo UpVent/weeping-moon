@@ -1,0 +1,64 @@
+#! /usr/bin/env bash
+
+help() {
+    cat <<__EOF__
+    Module description:
+
+    This module changes the permissions of security critical files from
+    common installations. This should be only run once.
+
+    OPTIONS:
+
+    status: Reports the status of the protected files just in case you need
+    to modify them. It also displays the original file permissions.
+
+__EOF__
+}
+
+main() {
+    if [[ -f "/etc/cups/cupsd.conf" ]]; then
+        echo "CUPS printer configuration file found!"
+        echo "Securing CUPS file..."
+        sudo chmod 0700 /etc/cups/cupsd.conf
+        echo "/etc/cups/cupsd.conf file secured with permissions: 0700"
+    fi
+
+    if [[ -f "/etc/sysctl.conf" ]]; then
+        echo "Kernel configuration file found!"
+        echo "Securing kernel configuration file..."
+        sudo chmod 600 /etc/sysctl.conf
+        echo "/etc/sysctl.conf file secured with permissions: 600"
+    fi
+
+    if [[ -f "/etc/sudoers" ]]; then
+        echo "sudo configuration file found!"
+        echo "Securing sudo configuration file..."
+        sudo chmod 0440 /etc/sudoers
+        echo "/etc/sudoers file secured with permissions: 0440"
+    fi
+
+    echo "All your files were secured! If you wish to consult the status of them
+    please run:
+    wpm sec-crit-files status"
+
+    echo "If you wish to revert changes you can run:
+    wpm sec-crit-files revert"
+}
+
+status() {
+    systl_perms=$(stat -c "%a" /etc/sysctl.conf)
+    sudo_perms=$(stat -c "%a" /etc/sudoers)
+    cups_perms=$(stat -c "%a" /etc/cups/cupsd.conf)
+
+    echo "Displaying status of critical files:"
+    echo "/etc/cups/cupsd.conf: $cups_perms Original Permissions: "
+    echo "/etc/sysctl.conf: $systl_perms Original Permissions: "
+    echo "/etc/sudoers: $sudo_perms Original Permissions: "
+}
+
+case $1 in
+    help) help;;
+    *) main;;
+esac
+
+# 2020 - UpVent

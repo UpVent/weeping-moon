@@ -43,6 +43,7 @@ are indeed tested in both Debian and Ubuntu (Stable & Latest LTS respectively)
 - [X] harden-ssh:   Hardens `sshd_config` file.
 - [X] ipt-rules:    Various iptables rules that MIGHT be handy.
 - [ ] shellshock:   Check if your current bash version is compromised against shellshock.
+- [X] sec-crit-files: Secures critical files with permissions. 
 
 ## TODO: 
 
