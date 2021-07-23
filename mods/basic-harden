@@ -1,0 +1,25 @@
+#! /usr/bin/env bash
+
+help() {
+    cat <<__EOF__
+    Module description:
+
+    This module makes some basic package install + checks for Debian / Ubuntu
+    systems to improve your hardening score.
+__EOF__
+}
+
+main() {
+    echo -e "[WARN] Configuring automatic updates"
+    sudo apt install unattended-upgrades
+    sudo dpkg-reconfigure -plow unattended-upgrades
+    echo -e "[SUCCESS] Automatic updates configured correctly"
+    exit 0
+}
+
+case $1 in
+    help) help;;
+    *) main;;
+esac
+
+# 2020 - UpVent
