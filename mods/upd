@@ -4,6 +4,7 @@ help() {
     cat <<__EOF__
     Module description:
 
+    This only updates your system.
 __EOF__
 }
 
